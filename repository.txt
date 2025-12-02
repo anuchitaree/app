@@ -1,0 +1,16 @@
+Stock monitoring on permise:
+https://gitlab.com/dot-asterisk/external-fiot/diat/software-team/stock-monitoring
+Sign in · GitLab
+GitLab.com
+
+Stock monitoring on Customapp:
+gitlab.cloud.fiot.denso.info/dot-asterisk/customapp-platform/share/customapps/stock-monitoring
+
+
+Manpower management on VMware :
+https://gitlab.com/dot-asterisk/external-fiot/diat/software-team/manpower-management
+Sign in · GitLab
+GitLab.com
+ 
+Condition Base Maintenance on VMware :
+ https://gitlab.com/dot-asterisk/external-fiot/diat/other/cbm
