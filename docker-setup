@@ -1,0 +1,140 @@
+Introduce Docker
+
+Get the packages required for installation.
+//*
+sudo snap remove curl
+sudo apt install curl
+
+//*
+$ sudo apt update
+//*
+$ sudo apt -y install apt-transport-https ca-certificates curl software-properties-common
+
+Add Docker official GPG key.
+Run the following command and OKmake sure it shows up.
+
+//*
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+OKIf you get an error instead gpg: no valid OpenPGP data found.of , add it manually by running the following command:
+
+//** if it is NOT
+$ curl -O -fsSL https://download.docker.com/linux/debian/gpg
+//**
+$ sudo apt-key add gpg
+
+Install Docker-CE.
+//*
+$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+//*
+$ sudo apt update
+//*
+$ sudo apt -y install docker-ce
+
+Install Docker-Compose.
+//*
+$ sudo -E curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
+
+Grant execute permission to the executable binary.
+
+//*
+$ sudo chmod +x /usr/bin/docker-compose
+
+Check the version of Docker-Compose and confirm that v1.29.2 is output.
+
+//*
+$ docker-compose -v
+---> docker-compose version 1.29.2, build 5becea4c
+
+Start Docker service.
+
+//*
+$ sudo service docker start
+
+When the Docker service has finished starting, the following message will be displayed.
+
+
+  ///
+  ///
+  ///
+  
+--- Install GUI on Ubuntu Server ---
+1.updating the apt package index
+$ sudo apt update
+$ sudo apt install tasksel
+2.select the GUI you wish to install
+$ tasksel --list-tasks
+3.Once you have selected the GUI you wish to install on Ubuntu
+$ sudo tasksel install ubuntu-desktop
+4.tasksel will now begin to download and install all of the packages required
+5.After installation, reboot your system.
+$ sudo reboot
+6.the GUI should start
+$ sudo systemctl set-default graphical.target
+
+
+---Install docker on Ubuntu desktop and server ---fw
+sudo apt install curl
+
+sudo apt update
+-> error  E: Unable to lock directory /var/lib/apt/lists/
+	sudo rm /var/lib/apt/lists/lock
+	sudo rm /var/cache/apt/archives/lock
+	sudo rm /var/lib/dpkg/lock
+
+
+sudo apt -y install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+-> OK 
+-> if NOT
+	curl -O -fsSL https://download.docker.com/linux/debian/gpg
+	
+sudo apt-key add gpg
+-->gpg: can't open 'gpg': No such file or directory
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+sudo apt update
+sudo apt -y install docker-ce
+sudo -E curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
+sudo chmod +x /usr/bin/docker-compose
+docker-compose -v
+-> docker-compose version 1.29.2, build 5becea4c
+sudo service docker start
+
+******* problem ********
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.24/images/json: dial unix /var/run/docker.sock: connect: permission denied code example
+
+How to solve
+1.$ sudo chmod 666 /var/run/docker.sock
+--> if no good
+2. $ sudo setfacl --modify user:<user name or ID>:rw /var/run/docker.sock
+3.$ sudo newgroup docker
+
+sudo chmod 666 /var/run/docker.sock
+sudo usermod -aG docker ${USER}
+
+
+---install vs code---
+//* Step 1: Update the system
+sudo apt update && sudo apt upgrade -y
+
+//* Step 2: Install packages
+sudo apt install software-properties-common apt-transport-https wget -y
+//* Step 3: Import repository
+wget -O- https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor | sudo tee /usr/share/keyrings/vscode.gpg
+
+echo deb [arch=amd64 signed-by=/usr/share/keyrings/vscode.gpg] https://packages.microsoft.com/repos/vscode stable main | sudo tee /etc/apt/sources.list.d/vscode.list
+//* Step 4: Update the system again
+sudo apt update
+//* Step 5: Install the editor
+sudo apt install code
+
+
+---Install node js ---
+sudo apt update
+sudo apt-get install curl
+curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt-get install nodejs
+node -v
+sudo apt-get update && sudo apt-get install yarn
+
+
